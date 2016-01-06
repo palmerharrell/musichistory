@@ -1,0 +1,21 @@
+nav {
+	background-color: #FFB4B0;
+	border: 2px solid black;
+}
+
+nav > ul {
+	height: 20px;
+}
+
+nav > ul > li {
+	float: left;
+	text-align: center;
+	list-style: none;
+	padding: 0 5px;
+}
+
+nav > ul > li > a {
+	text-decoration: none;
+	font-family: Arial;
+
+}

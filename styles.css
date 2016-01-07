@@ -68,6 +68,10 @@ h2 {
 	font-family: Arial;
 }
 
+.lengthSlider {
+	width: 86%;
+}
+
 .dropdown {
 	width: 90%;
 }

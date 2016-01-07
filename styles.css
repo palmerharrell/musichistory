@@ -1,6 +1,7 @@
 body {
 	padding: 0;
 	margin: 0;
+	font-family: Arial;
 }
 
 .content {
@@ -76,6 +77,11 @@ h2 {
 	width: 90%;
 }
 
+.sidebarLabel {
+	margin-top: 25px;
+	margin-bottom: 0;
+}
+
 .genreCol1 {
 	width: 50%;
 	height: 100px;
@@ -99,4 +105,5 @@ h2 {
 .filterButton > button {
 	width: 100px;
 	margin: 10px 0 0 0;
+	font-size: 1.3em;
 }

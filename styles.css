@@ -34,6 +34,7 @@ nav > ul > li > a {
 h2 {
 	font-family: Arial;
 	color: #785616;
+	margin-bottom: 0;
 }
 
 .sidebar {
@@ -59,6 +60,7 @@ h2 {
 .songListItem {
 	height: 30px;
 	padding-left: 0;
+	margin-top: 10px;
 }
 
 .songListItem > li {

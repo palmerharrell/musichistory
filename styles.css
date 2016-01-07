@@ -25,21 +25,36 @@ nav > ul > li > a {
 
 }
 
+h2 {
+	font-family: Arial;
+}
+
 .sidebar {
 	float: left;
 	background-color: #4DD7FA;
 	height: 400px;
-	width: 200px;
+	width: 30%;
 	margin: 10px 5px 10px 0;
 	border: 2px solid black;
 	padding: 15px;
 }
 
 .songList {
-	float: right;
 	background-color: #FEFAC0;
 	height: 400px;
-	width: 60%;
-	margin: 10px 0 10px 5px;
+	margin: 10px 0 10px 10px;
 	border: 2px solid black;
+	padding: 15px;
+}
+
+.songListItem {
+	height: 30px;
+	padding-left: 0;
+}
+
+.songListItem > li {
+	float: left;
+	text-align: center;
+	list-style: none;
+	padding-right: 10px;
 }

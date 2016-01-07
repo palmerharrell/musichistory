@@ -27,6 +27,7 @@ nav > ul > li > a {
 
 h2 {
 	font-family: Arial;
+	color: #785616;
 }
 
 .sidebar {
@@ -57,4 +58,5 @@ h2 {
 	text-align: center;
 	list-style: none;
 	padding-right: 10px;
+	font-family: Arial;
 }

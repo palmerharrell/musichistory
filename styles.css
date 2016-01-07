@@ -29,9 +29,10 @@ nav > ul > li > a {
 	float: left;
 	background-color: #4DD7FA;
 	height: 400px;
-	width: 30%;
+	width: 200px;
 	margin: 10px 5px 10px 0;
 	border: 2px solid black;
+	padding: 15px;
 }
 
 .songList {

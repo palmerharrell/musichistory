@@ -44,17 +44,17 @@ h2 {
 	background-color: #4DD7FA;
 	height: 400px;
 	width: 20%;
-	margin: 10px 5px 10px 0;
+	margin: 10px auto 10px 0;
 	border: 2px solid black;
 	padding: 15px;
 }
 
 .songList {
-	float: right;
+	float: left;
 	background-color: #FEFAC0;
 	height: 400px;
-	width: 71%;
-	margin: 10px 0 10px 0;
+	width: 70%;
+	margin: 10px 0 10px 10px;
 	border: 2px solid black;
 	padding: 15px;
 }

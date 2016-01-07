@@ -1,6 +1,11 @@
 body {
-	padding: 50px 50px 0 50px;
-	padding-right: 50px;
+	padding: 0;
+	margin: 0;
+}
+
+.content {
+	width: 90%;
+	margin: 20px 5%;
 }
 
 nav {
@@ -34,16 +39,18 @@ h2 {
 	float: left;
 	background-color: #4DD7FA;
 	height: 400px;
-	width: 30%;
+	width: 20%;
 	margin: 10px 5px 10px 0;
 	border: 2px solid black;
 	padding: 15px;
 }
 
 .songList {
+	float: right;
 	background-color: #FEFAC0;
 	height: 400px;
-	margin: 10px 0 10px 10px;
+	width: 70%;
+	margin: 10px 0 10px 0;
 	border: 2px solid black;
 	padding: 15px;
 }
@@ -59,4 +66,18 @@ h2 {
 	list-style: none;
 	padding-right: 10px;
 	font-family: Arial;
+}
+
+.genreCol1 {
+	width: 50%;
+	float: left;
+}
+
+.genreCol1 > input, .genreCol2 > input {
+	margin: 10px 5px;
+}
+
+.genreCol2 {
+	width: 50%;
+	float: right;
 }

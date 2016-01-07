@@ -68,6 +68,10 @@ h2 {
 	font-family: Arial;
 }
 
+.dropdown {
+	width: 90%;
+}
+
 .genreCol1 {
 	width: 50%;
 	float: left;

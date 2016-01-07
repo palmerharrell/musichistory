@@ -1,3 +1,8 @@
+body {
+	padding: 50px 50px 0 50px;
+	padding-right: 50px;
+}
+
 nav {
 	background-color: #FFB4B0;
 	border: 2px solid black;
@@ -18,4 +23,22 @@ nav > ul > li > a {
 	text-decoration: none;
 	font-family: Arial;
 
+}
+
+.sidebar {
+	float: left;
+	background-color: #4DD7FA;
+	height: 400px;
+	width: 30%;
+	margin: 10px 5px 10px 0;
+	border: 2px solid black;
+}
+
+.songList {
+	float: right;
+	background-color: #FEFAC0;
+	height: 400px;
+	width: 60%;
+	margin: 10px 0 10px 5px;
+	border: 2px solid black;
 }

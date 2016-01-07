@@ -49,7 +49,7 @@ h2 {
 	float: right;
 	background-color: #FEFAC0;
 	height: 400px;
-	width: 70%;
+	width: 71%;
 	margin: 10px 0 10px 0;
 	border: 2px solid black;
 	padding: 15px;
@@ -78,6 +78,7 @@ h2 {
 
 .genreCol1 {
 	width: 50%;
+	height: 100px;
 	float: left;
 }
 
@@ -87,5 +88,15 @@ h2 {
 
 .genreCol2 {
 	width: 50%;
+	height: 100px;
 	float: right;
+}
+
+.filterButton {
+	text-align: center;
+}
+
+.filterButton > button {
+	width: 100px;
+	margin: 10px 0 0 0;
 }

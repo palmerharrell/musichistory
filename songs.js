@@ -27,7 +27,7 @@ for (var i = 0; i < songs.length; i++) {
 
 
 // Must add each string to the DOM in index.html in the main content area.
-var songList = document.getElementById("songList");
+var songList = document.getElementsByClassName("songList");
 var newSongListText = "<p>";
 
 for (var i = 0; i < songs.length; i++) {
@@ -36,4 +36,4 @@ for (var i = 0; i < songs.length; i++) {
 };
 newSongListText += "</p>"
 
-songList.innerHTML = newSongListText;
+songList[0].innerHTML = newSongListText;

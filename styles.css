@@ -49,7 +49,7 @@ h2 {
 	padding: 15px;
 }
 
-#songList {
+.songList {
 	float: left;
 	background-color: #FEFAC0;
 	height: 400px;

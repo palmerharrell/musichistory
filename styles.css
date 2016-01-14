@@ -111,3 +111,9 @@ h2 {
 	margin: 10px 0 0 0;
 	font-size: 1.3em;
 }
+
+.roundedCorners {
+	border-radius: 10px;
+}
+
+

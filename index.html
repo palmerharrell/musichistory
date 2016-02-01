@@ -18,49 +18,52 @@
 				<li><a href="#">Profile</a></li>
 			</ul>
 		</nav>
-		<div class="sidebar roundedCorners">
-			<p class="sidebarLabel">Song length:</p>
-			<input type="range" class="lengthSlider">
-			<p class="sidebarLabel">Artist:</p>
-			<select name="artist" class="dropdown">
-				<option value="artist1">Bj&ouml;rk</option>
-				<option value="artist2">Gorillaz</option>
-				<option value="artist3">Camera Obscura</option>
-				<option value="artist4">Dirty Projectors</option>
-				<option value="artist5">Antony &amp; The Johnsons</option>
-			</select>
-			<p class="sidebarLabel">Album:</p>
-			<select name="album" class="dropdown">
-				<option value="album1">Med&uacute;lla</option>
-				<option value="album2">Plastic Beach</option>
-				<option value="album3">Let's Get Out of This Country</option>
-				<option value="album4">Bitte Orca</option>
-				<option value="album5">The Crying Light</option>
-			</select>
-			<p class="sidebarLabel">Genre:</p>
-			<div class="genreCol1">
-				<input type="checkbox" name="genre" value="genre 1">Genre 1<br>
-				<input type="checkbox" name="genre" value="genre 2">Genre 2<br>
-				<input type="checkbox" name="genre" value="genre 3">Genre 3<br>
+		<div id="listView">
+			<div class="sidebar roundedCorners">
+				<p class="sidebarLabel">Song length:</p>
+				<input type="range" class="lengthSlider">
+				<p class="sidebarLabel">Artist:</p>
+				<select name="artist" class="dropdown">
+					<option value="artist1">Bj&ouml;rk</option>
+					<option value="artist2">Gorillaz</option>
+					<option value="artist3">Camera Obscura</option>
+					<option value="artist4">Dirty Projectors</option>
+					<option value="artist5">Antony &amp; The Johnsons</option>
+				</select>
+				<p class="sidebarLabel">Album:</p>
+				<select name="album" class="dropdown">
+					<option value="album1">Med&uacute;lla</option>
+					<option value="album2">Plastic Beach</option>
+					<option value="album3">Let's Get Out of This Country</option>
+					<option value="album4">Bitte Orca</option>
+					<option value="album5">The Crying Light</option>
+				</select>
+				<p class="sidebarLabel">Genre:</p>
+				<div class="genreCol1">
+					<input type="checkbox" name="genre" value="genre 1">Genre 1<br>
+					<input type="checkbox" name="genre" value="genre 2">Genre 2<br>
+					<input type="checkbox" name="genre" value="genre 3">Genre 3<br>
+				</div>
+				<div class="genreCol2">
+					<input type="checkbox" name="genre" value="genre 4">Genre 4<br>
+					<input type="checkbox" name="genre" value="genre 5">Genre 5<br>
+					<input type="checkbox" name="genre" value="genre 6">Genre 6<br>
+				</div>
+				<div class="filterButton">
+					<button>Filter</button>
+				</div>
 			</div>
-			<div class="genreCol2">
-				<input type="checkbox" name="genre" value="genre 4">Genre 4<br>
-				<input type="checkbox" name="genre" value="genre 5">Genre 5<br>
-				<input type="checkbox" name="genre" value="genre 6">Genre 6<br>
-			</div>
-			<div class="filterButton">
-				<button>Filter</button>
-			</div>
-		</div>
+			<div class="songList roundedCorners"></div>
+		</div> <!-- END listView DIV -->
 
-		<div class="songList roundedCorners"></div>
-
-		<div class="addSong roundedCorners">
-			<label for="songName">Song: </label><input id="songName" type="text">
-			<label for="artistName">Artist: </label><input id="artistName" type="text">
-			<label for="albumName">Album: </label><input id="albumName" type="text">
-			<button>Add</button>
-		</div>
+		<div id="addView">
+			<div class="addSong roundedCorners">
+				<label for="songName">Song: </label><input id="songName" type="text">
+				<label for="artistName">Artist: </label><input id="artistName" type="text">
+				<label for="albumName">Album: </label><input id="albumName" type="text">
+				<button>Add</button>
+			</div>
+		</div> <!-- END addView DIV -->
 
 	</div>
 	<script src="songs.js"></script>

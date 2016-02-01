@@ -28,16 +28,17 @@ for (var i = 0; i < songs.length; i++) {
 
 // Must add each string to the DOM in index.html in the main content area.
 var songList = document.getElementsByClassName("songList");
-var newSongListText = "</p>";
 
-for (var i = 0; i < songs.length; i++) {
-	newSongListText += songs[i];
-	newSongListText += "<br><br>";
-};
-newSongListText += "</p>"
+function refreshSongList() {
+	var newSongListText = "";
+	for (var i = 0; i < songs.length; i++) {
+		newSongListText += "<p>" + songs[i];
+		newSongListText += "</p>";
+	};
+	songList[0].innerHTML = newSongListText;
+}
 
-songList[0].innerHTML = newSongListText;
-
+refreshSongList();
 
 // When the user clicks on "Add Music" in the navigation bar, the List Music View should 
 // be hidden, and the Add Music View should be shown (see example wireframe).
@@ -71,9 +72,35 @@ listLink.addEventListener("click", function(event) {
 // all values from the input fields, add the song to your array of songs, and update 
 // the song list in the DOM.
 
+// Add new song to songs array and refresh song list
+function addSong(newSong) {
+	songs.push(newSong);
+	refreshSongList();
+}
 
+var addButton = document.getElementById("addButton");
+var artistInput = document.getElementById("artistName");
+var songInput = document.getElementById("songName");
+var albumInput = document.getElementById("albumName");
 
-
+addButton.addEventListener("click", function(event) {
+	event.preventDefault();
+	var newSong = "";
+	// collect inputs and create string like: "Legs - by ZZ Top on the album Eliminator"
+	newSong = songInput.value + " - by " + artistInput.value + " on the album " + albumInput.value;
+	// send new song string to addSong function
+	addSong(newSong);
+	// clear inputs
+	artistInput.value = "";
+	songInput.value = "";
+	albumInput.value = "";
+	
+	// Switch to listView
+	addView.classList.add("hidden");
+  listView.classList.add("visible");
+  addView.classList.remove("visible");
+  listView.classList.remove("hidden");
+});
 
 
 

@@ -11,14 +11,15 @@
 	<div class="content">
 		<nav class="roundedCorners">
 			<ul>
-				<li><a href="#">List Music</a></li>
+				<li><a href="#" id="listLink">List Music</a></li>
 				<li>|</li>
-				<li><a href="#">Add Music</a></li>
+				<li><a href="#" id="addLink">Add Music</a></li>
 				<li>|</li>
 				<li><a href="#">Profile</a></li>
 			</ul>
 		</nav>
-		<div id="listView">
+
+		<div id="listView"> <!-- START listView DIV -->
 			<div class="sidebar roundedCorners">
 				<p class="sidebarLabel">Song length:</p>
 				<input type="range" class="lengthSlider">
@@ -56,7 +57,7 @@
 			<div class="songList roundedCorners"></div>
 		</div> <!-- END listView DIV -->
 
-		<div id="addView">
+		<div id="addView" class="hidden"> <!-- START addView DIV -->
 			<div class="addSong roundedCorners">
 				<label for="songName">Song: </label><input id="songName" type="text">
 				<label for="artistName">Artist: </label><input id="artistName" type="text">

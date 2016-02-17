@@ -30,7 +30,7 @@ function addSong(newSong) {
 
 // Event Listeners
 addLink.addEventListener("click", function(event) {
-  event.preventDefault();
+  // event.preventDefault();
   listView.classList.add("hidden");
   addView.classList.add("visible");
   listView.classList.remove("visible");
@@ -38,7 +38,7 @@ addLink.addEventListener("click", function(event) {
 });
 
 listLink.addEventListener("click", function(event) {
-  event.preventDefault();
+  // event.preventDefault();
   addView.classList.add("hidden");
   listView.classList.add("visible");
   addView.classList.remove("visible");
@@ -46,7 +46,7 @@ listLink.addEventListener("click", function(event) {
 });
 
 addButton.addEventListener("click", function(event) {
-	event.preventDefault();
+	// event.preventDefault();
 	var newSong = "";
 	// collect inputs and create string like: "Legs - by ZZ Top on the album Eliminator"
 	newSong = songInput.value + " - by " + artistInput.value + " on the album " + albumInput.value;

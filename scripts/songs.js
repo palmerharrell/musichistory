@@ -9,11 +9,12 @@ var artistInput = document.getElementById("artistName");
 var songInput = document.getElementById("songName");
 var albumInput = document.getElementById("albumName");
 
-// Add each song to the DOM
+// Add each song to the DOM with IDs matching index in songs array
 function refreshSongList() {
 	var newSongListText = "";
-	for (var i = 0; i < songs.length; i++) {
-		newSongListText += `<p>${songs[i]}`;
+	var songsLength = songs.length;
+	for (var i = 0; i < songsLength; i++) {
+		newSongListText += `<p id="${i}">${songs[i]}`;
 		newSongListText += ` <button>Delete</button></p>`;
 	};
 	songList[0].innerHTML = newSongListText;
@@ -61,7 +62,12 @@ addButton.addEventListener("click", function(event) {
 
 listView.addEventListener("click", function(event) {
 	if (event.target.innerHTML === "Delete") {
+		// remove song from array that matches id of paragraph containing delete button
+		songs.splice(event.target.parentNode.getAttribute("id"), 1);
+		// remove paragraph containing delete button
 		event.target.parentNode.remove();
+		// refresh song list and re-index song paragraphs
+		refreshSongList();
 	};
 });
 

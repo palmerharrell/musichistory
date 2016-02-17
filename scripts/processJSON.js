@@ -4,7 +4,6 @@ songList1.addEventListener("load", parseSongList);
 songList1.open("GET", "json/songs1.json");
 songList1.send();
 
-// Parse JSON, populate songs array, refresh Song List view in DOM
 function parseSongList() {
 	var data = JSON.parse(this.responseText);
 	for (var i = 0; i < data.songs.length; i++) {
@@ -14,6 +13,7 @@ function parseSongList() {
 		songString += `on the album ${currentSong.album}`;
 		songs.push(songString);
 	};
+	// Populate Song List with songs array
 	refreshSongList();
 };
 

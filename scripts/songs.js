@@ -9,15 +9,12 @@ var artistInput = document.getElementById("artistName");
 var songInput = document.getElementById("songName");
 var albumInput = document.getElementById("albumName");
 
-// Add each song to the DOM on page load (probably move to XHR load)
-refreshSongList();
-
 // Add each song to the DOM
 function refreshSongList() {
 	var newSongListText = "";
 	for (var i = 0; i < songs.length; i++) {
-		newSongListText += "<p>" + songs[i];
-		newSongListText += "</p>";
+		newSongListText += `<p>${songs[i]}`;
+		newSongListText += ` <button>Delete</button></p>`;
 	};
 	songList[0].innerHTML = newSongListText;
 }
@@ -28,9 +25,10 @@ function addSong(newSong) {
 	refreshSongList();
 }
 
-// Event Listeners
+// ~~~~~~~~~~~~~~~~~~~
+//   Event Listeners
+// ~~~~~~~~~~~~~~~~~~~
 addLink.addEventListener("click", function(event) {
-  // event.preventDefault();
   listView.classList.add("hidden");
   addView.classList.add("visible");
   listView.classList.remove("visible");
@@ -38,7 +36,6 @@ addLink.addEventListener("click", function(event) {
 });
 
 listLink.addEventListener("click", function(event) {
-  // event.preventDefault();
   addView.classList.add("hidden");
   listView.classList.add("visible");
   addView.classList.remove("visible");
@@ -46,9 +43,8 @@ listLink.addEventListener("click", function(event) {
 });
 
 addButton.addEventListener("click", function(event) {
-	// event.preventDefault();
 	var newSong = "";
-	// collect inputs and create string like: "Legs - by ZZ Top on the album Eliminator"
+	// collect inputs and create new song string
 	newSong = songInput.value + " - by " + artistInput.value + " on the album " + albumInput.value;
 	// send new song string to addSong function
 	addSong(newSong);
@@ -63,4 +59,9 @@ addButton.addEventListener("click", function(event) {
   listView.classList.remove("hidden");
 });
 
+listView.addEventListener("click", function(event) {
+	if (event.target.innerHTML === "Delete") {
+		event.target.parentNode.remove();
+	};
+});
 

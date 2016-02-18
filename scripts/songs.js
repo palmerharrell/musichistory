@@ -2,12 +2,6 @@ $(document).ready(function() {
 	$("#addView").hide(); // Start Add Music View hidden
 	var songs = [];
 
-	// Find where these vars are used, and replace them with direct references
-
-	var listLink = document.getElementById("listLink");
-	var addButton = document.getElementById("addButton");
-	var moreButton = document.getElementById("moreButton");
-
 	// Add each song to the DOM with IDs matching index in songs array
 	function refreshSongList() {
 		var newSongListText = ``;
@@ -27,20 +21,17 @@ $(document).ready(function() {
 	//   Event Listeners
 	// ~~~~~~~~~~~~~~~~~~~
 
-	// ***** jQuery Example *****
-	$("#addLink").click(function() { // Used to be addLink variable
+	$("#addLink").click(function() {
 	  $("#listView").hide();
 	  $("#addView").show();
-	  // $("listView").toggleClass("visible");
-	  // addView.classList.remove("hidden");
 	});
 
-	listLink.addEventListener("click", function() {
+	$("#listLink").click(function() {
 	  $("#listView").show();
 	  $("#addView").hide();
 	});
 
-	addButton.addEventListener("click", function() {
+	$("#addButton").click(function() {
 		var newSong = ``;
 		// collect inputs and create new song string
 		newSong = `${$("#songName").val()} - by ${$("#artistName").val()} `;
@@ -67,9 +58,9 @@ $(document).ready(function() {
 		};
 	});
 
-	moreButton.addEventListener("click", function() {
+	$("#moreButton").click(function() {
 		songList2.send();
-		moreButton.disabled = true;
+		$(this).attr("disabled","disabled");
 	});
 
 	// Configure XHR

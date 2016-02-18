@@ -17,7 +17,7 @@ gulp.task('lint', function () {
             // be found in the official 
             // JSLint documentation. 
             node: true,
-            evil: true,
+            evil: false,
             nomen: true,
  
             // you can also set global 

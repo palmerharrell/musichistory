@@ -8,6 +8,7 @@ var addButton = document.getElementById("addButton");
 var artistInput = document.getElementById("artistName");
 var songInput = document.getElementById("songName");
 var albumInput = document.getElementById("albumName");
+var moreButton = document.getElementById("moreButton");
 
 // Add each song to the DOM with IDs matching index in songs array
 function refreshSongList() {
@@ -68,5 +69,10 @@ listView.addEventListener("click", function(event) {
 		// refresh song list and re-index song paragraphs
 		refreshSongList();
 	};
+});
+
+moreButton.addEventListener("click", function() {
+	songList2.send();
+	moreButton.disabled = true;
 });
 

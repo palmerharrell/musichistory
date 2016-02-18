@@ -1,5 +1,5 @@
 var songs = [];
-var songList = document.getElementsByClassName("songList");
+var songList = document.getElementsByClassName("songs");
 var addLink = document.getElementById("addLink");
 var listLink = document.getElementById("listLink");
 var addView = document.getElementById("addView");

@@ -11,11 +11,10 @@ var albumInput = document.getElementById("albumName");
 
 // Add each song to the DOM with IDs matching index in songs array
 function refreshSongList() {
-	var newSongListText = "";
+	var newSongListText = ``;
 	var songsLength = songs.length;
 	for (var i = 0; i < songsLength; i++) {
-		newSongListText += `<p id="${i}">${songs[i]}`;
-		newSongListText += ` <button>Delete</button></p>`;
+		newSongListText += `<p id="${i}">${songs[i]} <button>Delete</button></p>`;
 	};
 	songList[0].innerHTML = newSongListText;
 }
@@ -46,13 +45,13 @@ listLink.addEventListener("click", function(event) {
 addButton.addEventListener("click", function(event) {
 	var newSong = "";
 	// collect inputs and create new song string
-	newSong = songInput.value + " - by " + artistInput.value + " on the album " + albumInput.value;
+	newSong = `${songInput.value} - by ${artistInput.value} on the album ${albumInput.value}`;
 	// send new song string to addSong function
 	addSong(newSong);
 	// clear inputs
-	artistInput.value = "";
-	songInput.value = "";
-	albumInput.value = "";
+	artistInput.value = ``;
+	songInput.value = ``;
+	albumInput.value = ``;
 	// Switch to listView
 	addView.classList.add("hidden");
   listView.classList.add("visible");

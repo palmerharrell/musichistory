@@ -5,8 +5,7 @@ $(document).ready(function() {
 	// Add each song to the DOM with IDs matching index in songs array
 	function refreshSongList() {
 		var newSongListText = ``;
-		var songsLength = songs.length;
-		for (var i = 0; i < songsLength; i++) {
+		for (var i = 0; i < songs.length; i++) {
 			newSongListText += `<p id="${i}">${songs[i]} <button>Delete</button></p>`;
 		};
 		$(".songs").html(newSongListText);
@@ -16,6 +15,7 @@ $(document).ready(function() {
 		songs.push(newSong);
 		refreshSongList();
 	}
+
 
 	// ~~~~~~~~~~~~~~~~~~~
 	//   Event Listeners
@@ -48,7 +48,7 @@ $(document).ready(function() {
 	});
 
 	$("#listView").click(function(event) {
-		if (event.target.innerHTML === "Delete") {
+		if ($(event.target).html() === "Delete") {
 			// remove song from array that matches id of paragraph containing delete button
 			songs.splice(event.target.parentNode.getAttribute("id"), 1);
 			// remove paragraph containing delete button
@@ -60,10 +60,15 @@ $(document).ready(function() {
 
 	$("#moreButton").click(function() {
 		songList2.send();
-		$(this).attr("disabled","disabled");
+		// $(this).attr("disabled","disabled");
+		$(this).hide();
 	});
 
-	// Configure XHR
+
+	// ~~~~~~~~~~~~~~~~~~~
+	// 	 Configure XHR
+	// ~~~~~~~~~~~~~~~~~~~
+
   var songList1 = new XMLHttpRequest();
   var songList2 = new XMLHttpRequest();
   songList1.addEventListener("load", parseSongList1);

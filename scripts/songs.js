@@ -47,14 +47,12 @@ $(document).ready(function() {
 	$("#addButton").click(function() {
 		var newSong = ``;
 		// collect inputs and create new song string
-		newSong = `${$("#songName").val()} - by ${$("#artistName").val()} `;
-		newSong += `on the album ${$("#albumName").val()}`;
+		newSong = `${$("#songName").val()} - by ${$("#artistName").val()}`;
+		newSong += ` on the album ${$("#albumName").val()}`;
 		// send new song string to addSong function
 		addSong(newSong);
 		// clear inputs
-		$("#artistName").val(``);
-		$("#songName").val(``);
-		$("#albumName").val(``);
+		$("#artistName, #songName, #albumName").val(``);
 		// Switch to listView
 		$("#listView").show();
 	  $("#addView").hide();
@@ -63,16 +61,15 @@ $(document).ready(function() {
 	$("#listView").click(function(event) {
 		if ($(event.target).html() === "Delete") {
 			// remove song from array that matches id of paragraph containing delete button
-			songs.splice(event.target.parentNode.getAttribute("id"), 1);
+			songs.splice($(event.target).parent().attr("id"), 1);
 			// remove paragraph containing delete button
-			event.target.parentNode.remove();
+			$(event.target).parent().remove();
 			// refresh song list and re-index song paragraphs
 			refreshSongList();
 		};
 	});
 
 	$("#moreButton").click(function() {
-		// songList2.send();
 		$(this).hide();
 		$.ajax({url: "json/songs2.json"}).done(parseSongList);
 	});

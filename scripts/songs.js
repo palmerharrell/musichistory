@@ -29,21 +29,21 @@ function addSong(newSong) {
 // ~~~~~~~~~~~~~~~~~~~
 //   Event Listeners
 // ~~~~~~~~~~~~~~~~~~~
-addLink.addEventListener("click", function(event) {
+addLink.addEventListener("click", function() {
   listView.classList.add("hidden");
   addView.classList.add("visible");
   listView.classList.remove("visible");
   addView.classList.remove("hidden");
 });
 
-listLink.addEventListener("click", function(event) {
+listLink.addEventListener("click", function() {
   addView.classList.add("hidden");
   listView.classList.add("visible");
   addView.classList.remove("visible");
   listView.classList.remove("hidden");
 });
 
-addButton.addEventListener("click", function(event) {
+addButton.addEventListener("click", function() {
 	var newSong = "";
 	// collect inputs and create new song string
 	newSong = `${songInput.value} - by ${artistInput.value} on the album ${albumInput.value}`;

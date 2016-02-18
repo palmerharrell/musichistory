@@ -1,17 +1,11 @@
-
-var songs = [];
-
 $(document).ready(function() {
-	var songList = document.getElementsByClassName("songs");
+	$("#addView").hide(); // Start Add Music View hidden
+	var songs = [];
+
 	// Find where these vars are used, and replace them with direct references
-	// var addLink = $("#addLink");
+
 	var listLink = document.getElementById("listLink");
-	var addView = document.getElementById("addView");
-	var listView = document.getElementById("listView");
 	var addButton = document.getElementById("addButton");
-	var artistInput = document.getElementById("artistName");
-	var songInput = document.getElementById("songName");
-	var albumInput = document.getElementById("albumName");
 	var moreButton = document.getElementById("moreButton");
 
 	// Add each song to the DOM with IDs matching index in songs array
@@ -22,7 +16,6 @@ $(document).ready(function() {
 			newSongListText += `<p id="${i}">${songs[i]} <button>Delete</button></p>`;
 		};
 		$(".songs").html(newSongListText);
-		// songList[0].innerHTML = newSongListText;
 	}
 	// Add new song to songs array and refresh song list
 	function addSong(newSong) {
@@ -33,38 +26,37 @@ $(document).ready(function() {
 	// ~~~~~~~~~~~~~~~~~~~
 	//   Event Listeners
 	// ~~~~~~~~~~~~~~~~~~~
-	$("#addLink").click(function() {
-	  listView.classList.add("hidden");
-	  addView.classList.add("visible");
-	  listView.classList.remove("visible");
-	  addView.classList.remove("hidden");
+
+	// ***** jQuery Example *****
+	$("#addLink").click(function() { // Used to be addLink variable
+	  $("#listView").hide();
+	  $("#addView").show();
+	  // $("listView").toggleClass("visible");
+	  // addView.classList.remove("hidden");
 	});
 
 	listLink.addEventListener("click", function() {
-	  addView.classList.add("hidden");
-	  listView.classList.add("visible");
-	  addView.classList.remove("visible");
-	  listView.classList.remove("hidden");
+	  $("#listView").show();
+	  $("#addView").hide();
 	});
 
 	addButton.addEventListener("click", function() {
-		var newSong = "";
+		var newSong = ``;
 		// collect inputs and create new song string
-		newSong = `${songInput.value} - by ${artistInput.value} on the album ${albumInput.value}`;
+		newSong = `${$("#songName").val()} - by ${$("#artistName").val()} `;
+		newSong += `on the album ${$("#albumName").val()}`;
 		// send new song string to addSong function
 		addSong(newSong);
 		// clear inputs
-		artistInput.value = ``;
-		songInput.value = ``;
-		albumInput.value = ``;
+		$("#artistName").val(``);
+		$("#songName").val(``);
+		$("#albumName").val(``);
 		// Switch to listView
-		addView.classList.add("hidden");
-	  listView.classList.add("visible");
-	  addView.classList.remove("visible");
-	  listView.classList.remove("hidden");
+		$("#listView").show();
+	  $("#addView").hide();
 	});
 
-	listView.addEventListener("click", function(event) {
+	$("#listView").click(function(event) {
 		if (event.target.innerHTML === "Delete") {
 			// remove song from array that matches id of paragraph containing delete button
 			songs.splice(event.target.parentNode.getAttribute("id"), 1);
@@ -89,7 +81,7 @@ $(document).ready(function() {
   songList2.open("GET", "json/songs2.json");
   songList1.send();
 
-  // Combine these functions later
+  // Combine parseSongList1 & parseSongList2 later
   function parseSongList1() {
     var data = JSON.parse(this.responseText);
     for (var i = 0; i < data.songs.length; i++) {

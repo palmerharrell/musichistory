@@ -1,6 +1,10 @@
 $(document).ready(function() {
+
 	$("#addView").hide(); // Start Add Music View hidden
 	var songs = [];
+
+	// Load 1st JSON file
+	$.ajax({url: "json/songs1.json"}).done(parseSongList);
 
 	// Add each song to the DOM with IDs matching index in songs array
 	function refreshSongList() {
@@ -16,11 +20,20 @@ $(document).ready(function() {
 		refreshSongList();
 	}
 
+	// Read JSON data and push to array then DOM
+  function parseSongList(data) {
+    for (var i = 0; i < data.songs.length; i++) {
+      var currentSong = data.songs[i];
+      var songString = ``;
+      songString += `${currentSong.title} - by ${currentSong.artist} `;
+      songString += `on the album ${currentSong.album}`;
+      songs.push(songString);
+    };
+    // Populate Song List with songs array
+    refreshSongList();
+  };
 
-	// ~~~~~~~~~~~~~~~~~~~
-	//   Event Listeners
-	// ~~~~~~~~~~~~~~~~~~~
-
+	// Event Listeners
 	$("#addLink").click(function() {
 	  $("#listView").hide();
 	  $("#addView").show();
@@ -59,48 +72,8 @@ $(document).ready(function() {
 	});
 
 	$("#moreButton").click(function() {
-		songList2.send();
-		// $(this).attr("disabled","disabled");
+		// songList2.send();
 		$(this).hide();
+		$.ajax({url: "json/songs2.json"}).done(parseSongList);
 	});
-
-
-	// ~~~~~~~~~~~~~~~~~~~
-	// 	 Configure XHR
-	// ~~~~~~~~~~~~~~~~~~~
-
-  var songList1 = new XMLHttpRequest();
-  var songList2 = new XMLHttpRequest();
-  songList1.addEventListener("load", parseSongList1);
-  songList2.addEventListener("load", parseSongList2);
-  songList1.open("GET", "json/songs1.json");
-  songList2.open("GET", "json/songs2.json");
-  songList1.send();
-
-  // Combine parseSongList1 & parseSongList2 later
-  function parseSongList1() {
-    var data = JSON.parse(this.responseText);
-    for (var i = 0; i < data.songs.length; i++) {
-      var currentSong = data.songs[i];
-      var songString = ``;
-      songString += `${currentSong.title} - by ${currentSong.artist} `;
-      songString += `on the album ${currentSong.album}`;
-      songs.push(songString);
-    };
-    // Populate Song List with songs array
-    refreshSongList();
-  };
-
-  function parseSongList2() {
-    var data = JSON.parse(this.responseText);
-    for (var i = 0; i < data.songs.length; i++) {
-      var currentSong = data.songs[i];
-      var songString = ``;
-      songString += `${currentSong.title} - by ${currentSong.artist} `;
-      songString += `on the album ${currentSong.album}`;
-      songs.push(songString);
-    };
-    // Populate Song List with songs array
-    refreshSongList();
-  };
 });

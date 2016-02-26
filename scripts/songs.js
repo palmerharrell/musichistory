@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function() {
 
 	$("#addView").hide(); // Start Add Music View hidden
@@ -11,8 +13,9 @@ $(document).ready(function() {
 		var newSongListText = ``;
 		for (var i = 0; i < songs.length; i++) {
 			newSongListText += `<p id="${i}">${songs[i]} <button>Delete</button></p>`;
-		};
+		}
 		$(".songs").html(newSongListText);
+		console.log("Song List: ", songs);
 	}
 	// Add new song to songs array and refresh song list
 	function addSong(newSong) {
@@ -28,10 +31,10 @@ $(document).ready(function() {
       songString += `${currentSong.title} - by ${currentSong.artist} `;
       songString += `on the album ${currentSong.album}`;
       songs.push(songString);
-    };
+    }
     // Populate Song List with songs array
     refreshSongList();
-  };
+  }
 
 	// Event Listeners
 	$("#addLink").click(function() {
@@ -66,7 +69,7 @@ $(document).ready(function() {
 			$(event.target).parent().remove();
 			// refresh song list and re-index song paragraphs
 			refreshSongList();
-		};
+		}
 	});
 
 	$("#moreButton").click(function() {

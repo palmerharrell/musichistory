@@ -1,4 +1,5 @@
 .DS_Store
+.jshintrc
 gulpfile.js
 bower_components
 node_modules

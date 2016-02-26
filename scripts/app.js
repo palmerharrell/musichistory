@@ -1,12 +1,15 @@
 "use strict";
 
+let JsonModule = require("./json");
+console.log("JsonModule", JsonModule);
+
 $(document).ready(function() {
 
 	$("#addView").hide(); // Start Add Music View hidden
 	var songs = [];
 
-	// Load 1st JSON file
-	$.ajax({url: "json/songs1.json"}).done(parseSongList);
+// "Load 1st JSON file" was here.
+// JsonModule.getJson("json/songs1.json");
 
 	// Add each song to the DOM with IDs matching index in songs array
 	function refreshSongList() {
@@ -23,18 +26,7 @@ $(document).ready(function() {
 		refreshSongList();
 	}
 
-	// Read JSON data and push to array then DOM
-  function parseSongList(data) {
-    for (var i = 0; i < data.songs.length; i++) {
-      var currentSong = data.songs[i];
-      var songString = ``;
-      songString += `${currentSong.title} - by ${currentSong.artist} `;
-      songString += `on the album ${currentSong.album}`;
-      songs.push(songString);
-    }
-    // Populate Song List with songs array
-    refreshSongList();
-  }
+// "Read JSON data and push to array then DOM" was here.
 
 	// Event Listeners
 	$("#addLink").click(function() {

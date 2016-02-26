@@ -1,13 +1,16 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
 
+let JsonModule = require("./json");
+console.log("JsonModule", JsonModule);
+
 $(document).ready(function() {
 
 	$("#addView").hide(); // Start Add Music View hidden
 	var songs = [];
 
-	// Load 1st JSON file
-	$.ajax({url: "json/songs1.json"}).done(parseSongList);
+// "Load 1st JSON file" was here.
+// JsonModule.getJson("json/songs1.json");
 
 	// Add each song to the DOM with IDs matching index in songs array
 	function refreshSongList() {
@@ -24,18 +27,7 @@ $(document).ready(function() {
 		refreshSongList();
 	}
 
-	// Read JSON data and push to array then DOM
-  function parseSongList(data) {
-    for (var i = 0; i < data.songs.length; i++) {
-      var currentSong = data.songs[i];
-      var songString = ``;
-      songString += `${currentSong.title} - by ${currentSong.artist} `;
-      songString += `on the album ${currentSong.album}`;
-      songs.push(songString);
-    }
-    // Populate Song List with songs array
-    refreshSongList();
-  }
+// "Read JSON data and push to array then DOM" was here.
 
 	// Event Listeners
 	$("#addLink").click(function() {
@@ -78,6 +70,47 @@ $(document).ready(function() {
 		$.ajax({url: "json/songs2.json"}).done(parseSongList);
 	});
 });
+
+},{"./json":2}],2:[function(require,module,exports){
+"use strict";
+
+$(document).ready(function() {
+
+	let jsonParser = {
+		getJson: function(jsonUrl) {
+			$.ajax({url: jsonUrl}).done(parseSongList);
+		},
+		parseSongList: function(data) {
+			for (var i = 0; i < data.songs.length; i++) {
+      var currentSong = data.songs[i];
+      var songString = ``;
+      songString += `${currentSong.title} - by ${currentSong.artist} `;
+      songString += `on the album ${currentSong.album}`;
+      songs.push(songString);
+    	}
+    	// Populate Song List with songs array
+    	refreshSongList();
+		}
+	}
+	// Load 1st JSON file
+	// $.ajax({url: "json/songs1.json"}).done(parseSongList);
+
+	// Read JSON data and push to array then DOM
+  // function parseSongList(data) {
+  //   for (var i = 0; i < data.songs.length; i++) {
+  //     var currentSong = data.songs[i];
+  //     var songString = ``;
+  //     songString += `${currentSong.title} - by ${currentSong.artist} `;
+  //     songString += `on the album ${currentSong.album}`;
+  //     songs.push(songString);
+  //   }
+  //   // Populate Song List with songs array
+  //   refreshSongList();
+  // }
+	console.log("jsonParser", jsonParser);
+	module.exports = jsonParser;
+});
+
 
 },{}]},{},[1])
 

@@ -1,29 +1,33 @@
 "use strict";
 
-let JsonModule = require("./json");
+let JsonModule = require("./jsonParser");
+let viewModule = require("./view");
 console.log("JsonModule", JsonModule);
+console.log("viewModule", viewModule);
 
-$(document).ready(function() {
+// $(document).ready(function() {
 
 	$("#addView").hide(); // Start Add Music View hidden
-	var songs = [];
+
+	// "var songs = [];" was here.
+	
 
 // "Load 1st JSON file" was here.
-// JsonModule.getJson("json/songs1.json");
+JsonModule.getJson("json/songs1.json");
 
 	// Add each song to the DOM with IDs matching index in songs array
-	function refreshSongList() {
-		var newSongListText = ``;
-		for (var i = 0; i < songs.length; i++) {
-			newSongListText += `<p id="${i}">${songs[i]} <button>Delete</button></p>`;
-		}
-		$(".songs").html(newSongListText);
-		console.log("Song List: ", songs);
-	}
+	// function refreshListView() {
+	// 	var newSongListText = ``;
+	// 	for (var i = 0; i < songs.length; i++) {
+	// 		newSongListText += `<p id="${i}">${songs[i]} <button>Delete</button></p>`;
+	// 	}
+	// 	$(".songs").html(newSongListText);
+	// 	console.log("Song List: ", songs);
+	// }
 	// Add new song to songs array and refresh song list
 	function addSong(newSong) {
 		songs.push(newSong);
-		refreshSongList();
+		viewModule.refreshListView(jsonParser.getSongList());
 	}
 
 // "Read JSON data and push to array then DOM" was here.
@@ -60,7 +64,7 @@ $(document).ready(function() {
 			// remove paragraph containing delete button
 			$(event.target).parent().remove();
 			// refresh song list and re-index song paragraphs
-			refreshSongList();
+			viewModule.refreshListView(jsonParser.getSongList());
 		}
 	});
 
@@ -68,4 +72,4 @@ $(document).ready(function() {
 		$(this).hide();
 		$.ajax({url: "json/songs2.json"}).done(parseSongList);
 	});
-});
+// });

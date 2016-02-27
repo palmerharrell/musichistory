@@ -1,12 +1,14 @@
 "use strict";
 
-let viewModule = require("./view");
+let ViewModule = require("./view");
 let songs = [];
 
 let jsonParser = {
+
 	getJson: function(jsonUrl) {
 		$.ajax({url: jsonUrl}).done(jsonParser.parseSongList);
 	},
+
 	parseSongList: function(data) {
 		for (var i = 0; i < data.songs.length; i++) {
     var currentSong = data.songs[i];
@@ -15,13 +17,19 @@ let jsonParser = {
     songString += `on the album ${currentSong.album}`;
     songs.push(songString);
   	}
-    console.log("songs: ", songs);
-  	// Populate Song List with songs array
-  	viewModule.refreshListView(jsonParser.getSongList());
+  	// Populate Song List View with songs array
+  	ViewModule.refreshListView(jsonParser.getSongList());
 	},
+
   getSongList: function() {
     return songs;
+  },
+
+  addSong: function(newSong) {
+    songs.push(newSong);
+    ViewModule.refreshListView(jsonParser.getSongList());
   }
+  
 }
 
 module.exports = jsonParser;

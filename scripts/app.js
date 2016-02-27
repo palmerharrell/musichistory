@@ -3,9 +3,6 @@
 let JsonModule = require("./jsonParser");
 let ViewModule = require("./view");
 
-// $("#addView").hide(); // Start Add Music View hidden
-console.log("start");
-
 // Load 1st JSON file
 JsonModule.getJson("json/songs1.json");
 
@@ -19,12 +16,20 @@ $("#moreButton").click(function() {
 	JsonModule.getJson("json/songs2.json");
 });
 
+$("#listView").click(function(event) {
+	if ($(event.target).html() === "Delete") {
+		// remove song from array that matches id of paragraph containing delete button
+		JsonModule.removeSong(event);
+		// refresh song list and re-index song paragraphs
+		ViewModule.refreshListView(JsonModule.getSongList());
+	}
+});
 
 
 // *** TO DO ***
 
 $("#addButton").click(function() {
-	var newSong = ``;
+	let newSong = ``;
 	// collect inputs and create new song string
 	newSong = `${$("#songName").val()} - by ${$("#artistName").val()}`;
 	newSong += ` on the album ${$("#albumName").val()}`;
@@ -37,16 +42,6 @@ $("#addButton").click(function() {
   $("#addView").hide();
 });
 
-$("#listView").click(function(event) {
-	if ($(event.target).html() === "Delete") {
-		// remove song from array that matches id of paragraph containing delete button
-		songs.splice($(event.target).parent().attr("id"), 1);
-		// remove paragraph containing delete button
-		$(event.target).parent().remove();
-		// refresh song list and re-index song paragraphs
-		ViewModule.refreshListView(jsonParser.getSongList());
-	}
-});
 
 
 

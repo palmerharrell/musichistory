@@ -10,15 +10,12 @@ let jsonParser = {
 	},
 
 	parseSongList: function(data) {
-		for (var i = 0; i < data.songs.length; i++) {
-    var currentSong = data.songs[i];
-    var songString = ``;
-    songString += `${currentSong.title} - by ${currentSong.artist} `;
-    songString += `on the album ${currentSong.album}`;
-    songs.push(songString);
-  	}
-  	// Populate Song List View with songs array
-  	ViewModule.refreshListView(jsonParser.getSongList());
+
+		for (let i = 0; i < data.songs.length; i++) {
+      songs.push(data.songs[i]);
+    }
+	  // Populate Song List View with songs array
+	  ViewModule.refreshListView(jsonParser.getSongList());
 	},
 
   getSongList: function() {
@@ -28,8 +25,13 @@ let jsonParser = {
   addSong: function(newSong) {
     songs.push(newSong);
     ViewModule.refreshListView(jsonParser.getSongList());
+  },
+
+  removeSong: function(event) {
+    songs.splice($(event.target).parent().attr("id"), 1);
+    ViewModule.refreshListView(jsonParser.getSongList());
   }
-  
+
 }
 
 module.exports = jsonParser;

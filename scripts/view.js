@@ -7,7 +7,10 @@ let viewManager = {
 		refreshListView: function(songArray) {
 			let newSongListText = ``;
 			for (let i = 0; i < songArray.length; i++) {
-				newSongListText += `<p id="${i}">${songArray[i]} <button>Delete</button></p>`;
+				let currentSong = songArray[i];
+				newSongListText += `<p id="${i}">${currentSong.title} - by `;
+				newSongListText += `${currentSong.artist} on the album ${currentSong.album} `;
+				newSongListText += `<button>Delete</button></p>`;
 			}
 			$(".songs").html(newSongListText);
 		},
@@ -16,7 +19,7 @@ let viewManager = {
 			$("#listView").hide();
 	  	$("#addView").show();
 		},
-		
+
 		listView: function() {
 			$("#listView").show();
   		$("#addView").hide();
@@ -24,4 +27,5 @@ let viewManager = {
 
 	};
 
-	module.exports = viewManager;
+	module.exports = viewManager
+

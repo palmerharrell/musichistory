@@ -4,9 +4,6 @@
 let JsonModule = require("./jsonParser");
 let ViewModule = require("./view");
 
-// $("#addView").hide(); // Start Add Music View hidden
-console.log("start");
-
 // Load 1st JSON file
 JsonModule.getJson("json/songs1.json");
 
@@ -20,12 +17,20 @@ $("#moreButton").click(function() {
 	JsonModule.getJson("json/songs2.json");
 });
 
+$("#listView").click(function(event) {
+	if ($(event.target).html() === "Delete") {
+		// remove song from array that matches id of paragraph containing delete button
+		JsonModule.removeSong(event);
+		// refresh song list and re-index song paragraphs
+		ViewModule.refreshListView(JsonModule.getSongList());
+	}
+});
 
 
 // *** TO DO ***
 
 $("#addButton").click(function() {
-	var newSong = ``;
+	let newSong = ``;
 	// collect inputs and create new song string
 	newSong = `${$("#songName").val()} - by ${$("#artistName").val()}`;
 	newSong += ` on the album ${$("#albumName").val()}`;
@@ -38,16 +43,6 @@ $("#addButton").click(function() {
   $("#addView").hide();
 });
 
-$("#listView").click(function(event) {
-	if ($(event.target).html() === "Delete") {
-		// remove song from array that matches id of paragraph containing delete button
-		songs.splice($(event.target).parent().attr("id"), 1);
-		// remove paragraph containing delete button
-		$(event.target).parent().remove();
-		// refresh song list and re-index song paragraphs
-		ViewModule.refreshListView(jsonParser.getSongList());
-	}
-});
 
 
 
@@ -65,15 +60,12 @@ let jsonParser = {
 	},
 
 	parseSongList: function(data) {
-		for (var i = 0; i < data.songs.length; i++) {
-    var currentSong = data.songs[i];
-    var songString = ``;
-    songString += `${currentSong.title} - by ${currentSong.artist} `;
-    songString += `on the album ${currentSong.album}`;
-    songs.push(songString);
-  	}
-  	// Populate Song List View with songs array
-  	ViewModule.refreshListView(jsonParser.getSongList());
+
+		for (let i = 0; i < data.songs.length; i++) {
+      songs.push(data.songs[i]);
+    }
+	  // Populate Song List View with songs array
+	  ViewModule.refreshListView(jsonParser.getSongList());
 	},
 
   getSongList: function() {
@@ -83,8 +75,13 @@ let jsonParser = {
   addSong: function(newSong) {
     songs.push(newSong);
     ViewModule.refreshListView(jsonParser.getSongList());
+  },
+
+  removeSong: function(event) {
+    songs.splice($(event.target).parent().attr("id"), 1);
+    ViewModule.refreshListView(jsonParser.getSongList());
   }
-  
+
 }
 
 module.exports = jsonParser;
@@ -99,7 +96,10 @@ let viewManager = {
 		refreshListView: function(songArray) {
 			let newSongListText = ``;
 			for (let i = 0; i < songArray.length; i++) {
-				newSongListText += `<p id="${i}">${songArray[i]} <button>Delete</button></p>`;
+				let currentSong = songArray[i];
+				newSongListText += `<p id="${i}">${currentSong.title} - by `;
+				newSongListText += `${currentSong.artist} on the album ${currentSong.album} `;
+				newSongListText += `<button>Delete</button></p>`;
 			}
 			$(".songs").html(newSongListText);
 		},
@@ -108,7 +108,7 @@ let viewManager = {
 			$("#listView").hide();
 	  	$("#addView").show();
 		},
-		
+
 		listView: function() {
 			$("#listView").show();
   		$("#addView").hide();
@@ -116,7 +116,8 @@ let viewManager = {
 
 	};
 
-	module.exports = viewManager;
+	module.exports = viewManager
+
 
 },{"./jsonParser":2}]},{},[1])
 

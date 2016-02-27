@@ -24,22 +24,13 @@
 			<div class="sidebar roundedCorners">
 				<p class="sidebarLabel">Song length:</p>
 				<input type="range" class="lengthSlider">
+				
 				<p class="sidebarLabel">Artist:</p>
-				<select name="artist" class="dropdown">
-					<option value="artist1">Bj&ouml;rk</option>
-					<option value="artist2">Gorillaz</option>
-					<option value="artist3">Camera Obscura</option>
-					<option value="artist4">Dirty Projectors</option>
-					<option value="artist5">Antony &amp; The Johnsons</option>
-				</select>
+				<select name="artist" class="dropdown" id ="selectArtist"></select>
+
 				<p class="sidebarLabel">Album:</p>
-				<select name="album" class="dropdown">
-					<option value="album1">Med&uacute;lla</option>
-					<option value="album2">Plastic Beach</option>
-					<option value="album3">Let's Get Out of This Country</option>
-					<option value="album4">Bitte Orca</option>
-					<option value="album5">The Crying Light</option>
-				</select>
+				<select name="album" class="dropdown" id="selectAlbum"></select>
+				
 				<p class="sidebarLabel">Genre:</p>
 				<div class="genreCol1">
 					<input type="checkbox" name="genre" value="genre 1">Genre 1<br>
@@ -54,7 +45,7 @@
 				<div class="filterButton">
 					<button>Filter</button>
 				</div>
-			</div>
+			</div> <!-- .sidebar -->
 			<div class="songList roundedCorners">
 				<div class="songs"></div>
 				<div class="moreSongs"><button id="moreButton">More ></button></div>

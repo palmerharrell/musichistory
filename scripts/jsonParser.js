@@ -1,6 +1,7 @@
 "use strict";
 
 let ViewModule = require("./view");
+let FilterModule = require("./filter");
 let songs = [];
 
 let jsonParser = {
@@ -16,6 +17,7 @@ let jsonParser = {
     }
 	  // Populate Song List View with songs array
 	  ViewModule.refreshListView(jsonParser.getSongList());
+    FilterModule.populateDropdowns(jsonParser.getSongList());
 	},
 
   getSongList: function() {

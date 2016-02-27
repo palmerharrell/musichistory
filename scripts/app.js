@@ -1,10 +1,11 @@
 "use strict";
 
 let JsonModule = require("./jsonParser");
+let FilterModule = require("./filter");
 let ViewModule = require("./view");
 
 // Load 1st JSON file
-JsonModule.getJson("json/songs1.json");
+JsonModule.getJson("json/songs2.json");
 
 // Event Listeners
 $("#addLink").click(ViewModule.addView);
@@ -13,7 +14,7 @@ $("#listLink").click(ViewModule.listView);
 
 $("#moreButton").click(function() {
 	$(this).hide();
-	JsonModule.getJson("json/songs2.json");
+	JsonModule.getJson("json/songs1.json");
 });
 
 $("#listView").click(function(event) {
@@ -27,6 +28,9 @@ $("#listView").click(function(event) {
 
 
 // *** TO DO ***
+
+// Filter Event Listeners
+// Re-filter on add or remove
 
 $("#addButton").click(function() {
 	let newSong = ``;

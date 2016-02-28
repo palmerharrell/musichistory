@@ -19,8 +19,9 @@ let jsonParser = {
 	parseSongList: function(data) {
 		for (let i = 0; i < data.songs.length; i++) {
       songs.push(data.songs[i]);
+      // increment idCounter and assign new ID to newest song object
       idCounter++;
-      console.log(idCounter);
+      songs[songs.length-1].songID = idCounter;
     }
 	  // Populate Song List View with songs array
     ViewModule.refreshListView(jsonParser.getSongList());
@@ -36,6 +37,11 @@ let jsonParser = {
     return filteredSongs;
   },
 
+  newSongID: function() {
+    idCounter++;
+    return idCounter;
+  },
+
   setSongList: function(newSongList) {
     ViewModule.refreshListView(newSongList);
   },
@@ -47,21 +53,24 @@ let jsonParser = {
 
   addSong: function(newSong) {
     songs.push(newSong);
+    // Remove current filters
+    artistSelect.value = "none";
+    albumSelect.value = "none";
+    // Add new options to filter menus
     FilterModule.populateDropdowns(jsonParser.getSongList());
+    // Refresh view
     ViewModule.refreshListView(jsonParser.getSongList());
   },
 
-  removeSong: function(event) { // Why won't jQuery work here?
-
+  removeSong: function(parentID) { // Why won't jQuery work here?
     for(let i = 0; i < songs.length; i++) {
-      if(songs[i].songID === $(event.target).parent().attr("id")) {
+      if(songs[i].songID == parentID) {
         songs.splice(i, 1);
         break;
       }
     }
-
     for(let i = 0; i < filteredSongs.length; i++) {
-      if(filteredSongs[i].songID === $(event.target).parent().attr("id")) {
+      if(filteredSongs[i].songID == parentID) {
         filteredSongs.splice(i, 1);
         break;
       }
@@ -76,6 +85,8 @@ let jsonParser = {
       filteredSongs = FilterModule.getMatches("artist", artistSelect.value, songs);
       ViewModule.refreshListView(filteredSongs);
     }
+    // Remove artists and albums from filter dropdowns if they no longer exist in songs
+    FilterModule.populateDropdowns(jsonParser.getSongList());
   }
 
 }

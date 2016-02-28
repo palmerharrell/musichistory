@@ -27,9 +27,7 @@ $("#clearButton").click(function() {
 $("#listView").click(function(event) {
 	if ($(event.target).html() === "Delete") {
 		// remove song from array that matches id of paragraph containing delete button
-		JsonModule.removeSong(event);
-		// refresh song list and re-index song paragraphs
-		ViewModule.refreshListView(JsonModule.getFilteredSongList());
+		JsonModule.removeSong($(event.target).parent().attr("id"));
 	}
 });
 
@@ -58,27 +56,20 @@ $("#selectAlbum").on('change', function() {
 	}
 });
 
-// *** TO DO ***
-
-
-
-
-// Re-filter on add or remove
-// addButton Event Listener below
-
-
 $("#addButton").click(function() {
-	let newSong = ``;
-	// collect inputs and create new song string
-	newSong = `${$("#songName").val()} - by ${$("#artistName").val()}`;
-	newSong += ` on the album ${$("#albumName").val()}`;
-	// send new song string to addSong function
+	// collect inputs and create new song object
+	let newSong = {};
+	newSong.songID = JsonModule.newSongID();
+	newSong.album = $("#albumName").val();
+	newSong.artist = $("#artistName").val();
+	newSong.title = $("#songName").val();
+
+	// send new song object to addSong function
 	JsonModule.addSong(newSong);
 	// clear inputs
 	$("#artistName, #songName, #albumName").val(``);
 	// Switch to listView
-	$("#listView").show();
-  $("#addView").hide();
+	ViewModule.listView();
 });
 
 

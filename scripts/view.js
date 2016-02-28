@@ -1,7 +1,5 @@
 "use strict";
 
-// let JsonModule = require("./jsonParser");
-
 let viewManager = {
 
 		refreshListView: function(songObjArray) {

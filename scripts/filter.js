@@ -3,7 +3,6 @@
 let filterForm = {
 
 	populateDropdowns: function(songList) {
-
 		let artists = [];
 		let albums = [];
 		let filteredArtists = [];

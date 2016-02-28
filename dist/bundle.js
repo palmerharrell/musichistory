@@ -19,6 +19,7 @@ $("#moreButton").click(function() {
 });
 
 $("#clearButton").click(function() {
+	JsonModule.setFilteredSongList(JsonModule.getSongList());
 	JsonModule.setSongList(JsonModule.getSongList());
 	$("#selectArtist").val("none");
 	$("#selectAlbum").val("none");
@@ -29,7 +30,7 @@ $("#listView").click(function(event) {
 		// remove song from array that matches id of paragraph containing delete button
 		JsonModule.removeSong(event);
 		// refresh song list and re-index song paragraphs
-		ViewModule.refreshListView(JsonModule.getSongList());
+		ViewModule.refreshListView(JsonModule.getFilteredSongList());
 	}
 });
 
@@ -37,10 +38,12 @@ $("#selectArtist").on('change', function() {
 	$("#selectAlbum").val("none");
 	if (this.value === "none") {
 		JsonModule.setSongList(JsonModule.getSongList());
+		JsonModule.setFilteredSongList(JsonModule.getSongList());
 	} else {
 	// call getMatches method and set song list to filtered list
 	let filteredByArtist = FilterModule.getMatches("artist", this.value, JsonModule.getSongList());
 	JsonModule.setSongList(filteredByArtist);
+	JsonModule.setFilteredSongList(filteredByArtist);
 	}
 });
 
@@ -48,6 +51,7 @@ $("#selectAlbum").on('change', function() {
 	$("#selectArtist").val("none");
 	if (this.value === "none") {
 		JsonModule.setSongList(JsonModule.getSongList());
+		JsonModule.setFilteredSongList(JsonModule.getSongList());
 	} else {
 	// call getMatches method and set song list to filtered list
 	let filteredByAlbum = FilterModule.getMatches("album", this.value, JsonModule.getSongList());
@@ -138,14 +142,12 @@ let filterForm = {
 		if (filterType === "artist") {	// Filter by Artist
 			filteredObj = songList.filter(function(e, i, a) {
 				if (e.artist === filterVal) {
-					console.log("e.artist", e.artist);
 					return e;
 				}
 			});
 		} else {												// Filter by Album
 			filteredObj = songList.filter(function(e, i, a) {
 				if (e.album === filterVal) {
-					console.log("e.album", e.album);
 					return e;
 				}
 			});
@@ -169,6 +171,11 @@ let ViewModule = require("./view");
 let FilterModule = require("./filter");
 let songs = [];
 let filteredSongs = [];
+let idCounter = 0;
+
+// Since jQuery won't work in this module for some reason:
+let artistSelect = document.getElementById("selectArtist");
+let albumSelect = document.getElementById("selectAlbum");
 
 let jsonParser = {
 
@@ -177,13 +184,15 @@ let jsonParser = {
 	},
 
 	parseSongList: function(data) {
-
 		for (let i = 0; i < data.songs.length; i++) {
       songs.push(data.songs[i]);
+      idCounter++;
+      console.log(idCounter);
     }
 	  // Populate Song List View with songs array
-	  ViewModule.refreshListView(jsonParser.getSongList());
+    ViewModule.refreshListView(jsonParser.getSongList());
     FilterModule.populateDropdowns(jsonParser.getSongList());
+    filteredSongs = songs;
 	},
 
   getSongList: function() {
@@ -195,18 +204,45 @@ let jsonParser = {
   },
 
   setSongList: function(newSongList) {
-    filteredSongs = newSongList;
     ViewModule.refreshListView(newSongList);
+  },
+
+  setFilteredSongList: function(filteredSongList) {
+    filteredSongs = filteredSongList;
+    ViewModule.refreshListView(filteredSongList);
   },
 
   addSong: function(newSong) {
     songs.push(newSong);
+    FilterModule.populateDropdowns(jsonParser.getSongList());
     ViewModule.refreshListView(jsonParser.getSongList());
   },
 
-  removeSong: function(event) {
-    songs.splice($(event.target).parent().attr("id"), 1);
-    ViewModule.refreshListView(jsonParser.getSongList());
+  removeSong: function(event) { // Why won't jQuery work here?
+
+    for(let i = 0; i < songs.length; i++) {
+      if(songs[i].songID === $(event.target).parent().attr("id")) {
+        songs.splice(i, 1);
+        break;
+      }
+    }
+
+    for(let i = 0; i < filteredSongs.length; i++) {
+      if(filteredSongs[i].songID === $(event.target).parent().attr("id")) {
+        filteredSongs.splice(i, 1);
+        break;
+      }
+    }
+
+    if (artistSelect.value === "none" && albumSelect.value === "none") {
+      ViewModule.refreshListView(jsonParser.getSongList());
+    } else if (artistSelect.value === "none") {
+      filteredSongs = FilterModule.getMatches("album", albumSelect.value, songs);
+      ViewModule.refreshListView(filteredSongs);
+    } else {
+      filteredSongs = FilterModule.getMatches("artist", artistSelect.value, songs);
+      ViewModule.refreshListView(filteredSongs);
+    }
   }
 
 }
@@ -216,15 +252,16 @@ module.exports = jsonParser;
 },{"./filter":2,"./view":4}],4:[function(require,module,exports){
 "use strict";
 
-let JsonModule = require("./jsonParser");
+// let JsonModule = require("./jsonParser");
 
 let viewManager = {
 
-		refreshListView: function(songArray) {
+		refreshListView: function(songObjArray) {
 			let newSongListText = ``;
-			for (let i = 0; i < songArray.length; i++) {
-				let currentSong = songArray[i];
-				newSongListText += `<p id="${i}">${currentSong.title} - by `;
+			for (let i = 0; i < songObjArray.length; i++) {
+				let currentSong = songObjArray[i];
+				newSongListText += `<p id="${currentSong.songID}">`;
+				newSongListText += `${currentSong.title} - by `;
 				newSongListText += `${currentSong.artist} on the album ${currentSong.album} `;
 				newSongListText += `<button>Delete</button></p>`;
 			}
@@ -246,7 +283,7 @@ let viewManager = {
 	module.exports = viewManager
 
 
-},{"./jsonParser":3}]},{},[1])
+},{}]},{},[1])
 
 
 //# sourceMappingURL=bundle.js.map

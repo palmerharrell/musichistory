@@ -53,14 +53,12 @@ let filterForm = {
 		if (filterType === "artist") {	// Filter by Artist
 			filteredObj = songList.filter(function(e, i, a) {
 				if (e.artist === filterVal) {
-					console.log("e.artist", e.artist);
 					return e;
 				}
 			});
 		} else {												// Filter by Album
 			filteredObj = songList.filter(function(e, i, a) {
 				if (e.album === filterVal) {
-					console.log("e.album", e.album);
 					return e;
 				}
 			});

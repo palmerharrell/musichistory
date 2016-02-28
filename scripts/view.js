@@ -1,14 +1,15 @@
 "use strict";
 
-let JsonModule = require("./jsonParser");
+// let JsonModule = require("./jsonParser");
 
 let viewManager = {
 
-		refreshListView: function(songArray) {
+		refreshListView: function(songObjArray) {
 			let newSongListText = ``;
-			for (let i = 0; i < songArray.length; i++) {
-				let currentSong = songArray[i];
-				newSongListText += `<p id="${i}">${currentSong.title} - by `;
+			for (let i = 0; i < songObjArray.length; i++) {
+				let currentSong = songObjArray[i];
+				newSongListText += `<p id="${currentSong.songID}">`;
+				newSongListText += `${currentSong.title} - by `;
 				newSongListText += `${currentSong.artist} on the album ${currentSong.album} `;
 				newSongListText += `<button>Delete</button></p>`;
 			}

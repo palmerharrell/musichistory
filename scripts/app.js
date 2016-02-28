@@ -18,6 +18,7 @@ $("#moreButton").click(function() {
 });
 
 $("#clearButton").click(function() {
+	JsonModule.setFilteredSongList(JsonModule.getSongList());
 	JsonModule.setSongList(JsonModule.getSongList());
 	$("#selectArtist").val("none");
 	$("#selectAlbum").val("none");
@@ -28,7 +29,7 @@ $("#listView").click(function(event) {
 		// remove song from array that matches id of paragraph containing delete button
 		JsonModule.removeSong(event);
 		// refresh song list and re-index song paragraphs
-		ViewModule.refreshListView(JsonModule.getSongList());
+		ViewModule.refreshListView(JsonModule.getFilteredSongList());
 	}
 });
 
@@ -36,10 +37,12 @@ $("#selectArtist").on('change', function() {
 	$("#selectAlbum").val("none");
 	if (this.value === "none") {
 		JsonModule.setSongList(JsonModule.getSongList());
+		JsonModule.setFilteredSongList(JsonModule.getSongList());
 	} else {
 	// call getMatches method and set song list to filtered list
 	let filteredByArtist = FilterModule.getMatches("artist", this.value, JsonModule.getSongList());
 	JsonModule.setSongList(filteredByArtist);
+	JsonModule.setFilteredSongList(filteredByArtist);
 	}
 });
 
@@ -47,6 +50,7 @@ $("#selectAlbum").on('change', function() {
 	$("#selectArtist").val("none");
 	if (this.value === "none") {
 		JsonModule.setSongList(JsonModule.getSongList());
+		JsonModule.setFilteredSongList(JsonModule.getSongList());
 	} else {
 	// call getMatches method and set song list to filtered list
 	let filteredByAlbum = FilterModule.getMatches("album", this.value, JsonModule.getSongList());

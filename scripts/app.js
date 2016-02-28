@@ -17,6 +17,12 @@ $("#moreButton").click(function() {
 	JsonModule.getJson("json/songs1.json");
 });
 
+$("#clearButton").click(function() {
+	JsonModule.setSongList(JsonModule.getSongList());
+	$("#selectArtist").val("none");
+	$("#selectAlbum").val("none");
+});
+
 $("#listView").click(function(event) {
 	if ($(event.target).html() === "Delete") {
 		// remove song from array that matches id of paragraph containing delete button
@@ -26,11 +32,36 @@ $("#listView").click(function(event) {
 	}
 });
 
+$("#selectArtist").on('change', function() {
+	$("#selectAlbum").val("none");
+	if (this.value === "none") {
+		JsonModule.setSongList(JsonModule.getSongList());
+	} else {
+	// call getMatches method and set song list to filtered list
+	let filteredByArtist = FilterModule.getMatches("artist", this.value, JsonModule.getSongList());
+	JsonModule.setSongList(filteredByArtist);
+	}
+});
+
+$("#selectAlbum").on('change', function() {
+	$("#selectArtist").val("none");
+	if (this.value === "none") {
+		JsonModule.setSongList(JsonModule.getSongList());
+	} else {
+	// call getMatches method and set song list to filtered list
+	let filteredByAlbum = FilterModule.getMatches("album", this.value, JsonModule.getSongList());
+	JsonModule.setSongList(filteredByAlbum);
+	}
+});
 
 // *** TO DO ***
 
-// Filter Event Listeners
+
+
+
 // Re-filter on add or remove
+// addButton Event Listener below
+
 
 $("#addButton").click(function() {
 	let newSong = ``;

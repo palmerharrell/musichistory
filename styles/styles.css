@@ -111,14 +111,14 @@ h2 {
 	float: right;
 }
 
-.filterButton {
+.clearFilter {
 	text-align: center;
 }
 
-.filterButton > button {
+.clearFilter > button {
 	width: 100px;
 	margin: 10px 0 0 0;
-	font-size: 1.3em;
+	/*font-size: 1.1em;*/
 }
 
 .roundedCorners {

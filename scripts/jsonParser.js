@@ -3,6 +3,7 @@
 let ViewModule = require("./view");
 let FilterModule = require("./filter");
 let songs = [];
+let filteredSongs = [];
 
 let jsonParser = {
 
@@ -22,6 +23,15 @@ let jsonParser = {
 
   getSongList: function() {
     return songs;
+  },
+
+  getFilteredSongList: function() {
+    return filteredSongs;
+  },
+
+  setSongList: function(newSongList) {
+    filteredSongs = newSongList;
+    ViewModule.refreshListView(newSongList);
   },
 
   addSong: function(newSong) {

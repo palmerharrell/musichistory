@@ -1,7 +1,5 @@
 "use strict";
 
-// let JsonModule = require("./jsonParser"); // I haven't used this yet, may not be needed
-
 let filterForm = {
 
 	populateDropdowns: function(songList) {
@@ -20,7 +18,7 @@ let filterForm = {
 		};
 
 		let buildString = function (array) {
-			let HtmlString = ``;
+			let HtmlString = `<option value="none"></option>`;
 			for (let i = 0; i < array.length; i++) {
 				let currentItem = array[i];
 				HtmlString += `<option value="${currentItem}">${currentItem}</option>`;
@@ -48,10 +46,33 @@ let filterForm = {
 		$("#selectAlbum").html(albumListHtmlStr);
 	},
 
-	getMatches: function(filter) {
-		// return matching song indexes or make a filtered object and call populate?
+	getMatches: function(filterType, filterVal, songList) {
+
+		let filteredObj = {};
+
+		if (filterType === "artist") {	// Filter by Artist
+			filteredObj = songList.filter(function(e, i, a) {
+				if (e.artist === filterVal) {
+					console.log("e.artist", e.artist);
+					return e;
+				}
+			});
+		} else {												// Filter by Album
+			filteredObj = songList.filter(function(e, i, a) {
+				if (e.album === filterVal) {
+					console.log("e.album", e.album);
+					return e;
+				}
+			});
+		}
+		return filteredObj;
 	}
 
 }
 
 module.exports = filterForm;
+
+
+
+
+

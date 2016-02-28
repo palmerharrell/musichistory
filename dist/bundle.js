@@ -18,6 +18,12 @@ $("#moreButton").click(function() {
 	JsonModule.getJson("json/songs1.json");
 });
 
+$("#clearButton").click(function() {
+	JsonModule.setSongList(JsonModule.getSongList());
+	$("#selectArtist").val("none");
+	$("#selectAlbum").val("none");
+});
+
 $("#listView").click(function(event) {
 	if ($(event.target).html() === "Delete") {
 		// remove song from array that matches id of paragraph containing delete button
@@ -27,11 +33,36 @@ $("#listView").click(function(event) {
 	}
 });
 
+$("#selectArtist").on('change', function() {
+	$("#selectAlbum").val("none");
+	if (this.value === "none") {
+		JsonModule.setSongList(JsonModule.getSongList());
+	} else {
+	// call getMatches method and set song list to filtered list
+	let filteredByArtist = FilterModule.getMatches("artist", this.value, JsonModule.getSongList());
+	JsonModule.setSongList(filteredByArtist);
+	}
+});
+
+$("#selectAlbum").on('change', function() {
+	$("#selectArtist").val("none");
+	if (this.value === "none") {
+		JsonModule.setSongList(JsonModule.getSongList());
+	} else {
+	// call getMatches method and set song list to filtered list
+	let filteredByAlbum = FilterModule.getMatches("album", this.value, JsonModule.getSongList());
+	JsonModule.setSongList(filteredByAlbum);
+	}
+});
 
 // *** TO DO ***
 
-// Filter Event Listeners
+
+
+
 // Re-filter on add or remove
+// addButton Event Listener below
+
 
 $("#addButton").click(function() {
 	let newSong = ``;
@@ -54,8 +85,6 @@ $("#addButton").click(function() {
 },{"./filter":2,"./jsonParser":3,"./view":4}],2:[function(require,module,exports){
 "use strict";
 
-// let JsonModule = require("./jsonParser"); // I haven't used this yet, may not be needed
-
 let filterForm = {
 
 	populateDropdowns: function(songList) {
@@ -74,7 +103,7 @@ let filterForm = {
 		};
 
 		let buildString = function (array) {
-			let HtmlString = ``;
+			let HtmlString = `<option value="none"></option>`;
 			for (let i = 0; i < array.length; i++) {
 				let currentItem = array[i];
 				HtmlString += `<option value="${currentItem}">${currentItem}</option>`;
@@ -102,13 +131,36 @@ let filterForm = {
 		$("#selectAlbum").html(albumListHtmlStr);
 	},
 
-	getMatches: function(filter) {
-		// return matching song indexes or make a filtered object and call populate?
+	getMatches: function(filterType, filterVal, songList) {
+
+		let filteredObj = {};
+
+		if (filterType === "artist") {	// Filter by Artist
+			filteredObj = songList.filter(function(e, i, a) {
+				if (e.artist === filterVal) {
+					console.log("e.artist", e.artist);
+					return e;
+				}
+			});
+		} else {												// Filter by Album
+			filteredObj = songList.filter(function(e, i, a) {
+				if (e.album === filterVal) {
+					console.log("e.album", e.album);
+					return e;
+				}
+			});
+		}
+		return filteredObj;
 	}
 
 }
 
 module.exports = filterForm;
+
+
+
+
+
 
 },{}],3:[function(require,module,exports){
 "use strict";
@@ -116,6 +168,7 @@ module.exports = filterForm;
 let ViewModule = require("./view");
 let FilterModule = require("./filter");
 let songs = [];
+let filteredSongs = [];
 
 let jsonParser = {
 
@@ -135,6 +188,15 @@ let jsonParser = {
 
   getSongList: function() {
     return songs;
+  },
+
+  getFilteredSongList: function() {
+    return filteredSongs;
+  },
+
+  setSongList: function(newSongList) {
+    filteredSongs = newSongList;
+    ViewModule.refreshListView(newSongList);
   },
 
   addSong: function(newSong) {

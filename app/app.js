@@ -13,6 +13,10 @@ app.config(['$routeProvider',
       	templateUrl: 'partials/song-detail.html',
       	controller: 'SongDetailCtrl'
       }).
+      when('/song/new', {
+      	templateUrl: 'partials/song-add.html',
+      	// controller: 'SongDetailCtrl' // SongAddCtrl goes here
+      }).
       otherwise({
         redirectTo: '/'
       });

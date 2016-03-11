@@ -10,8 +10,13 @@ app.controller("SongCtrl", [
     $scope.query = "";
     
     songStorage.then(
-        function(songArray) {
-          $scope.songs = songArray;
+        function(songCollection) {
+          for(let key in songCollection) {
+            songCollection[key].id = key;
+            console.log("songCollection[key]", songCollection[key]);
+          }
+          console.log("songCollection after adding ids: ", songCollection);
+          $scope.songs = songCollection; // this is not right anymore
         },
         function() {
 

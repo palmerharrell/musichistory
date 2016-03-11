@@ -9,7 +9,7 @@ app.config(['$routeProvider',
         templateUrl: 'partials/song-list.html',
         controller: 'SongCtrl'
       }).
-      when('/songs/:songId', {
+      when('/songs/:songId', { // songId is defined here, value comes from {{song.id}} in song-list.html
       	templateUrl: 'partials/song-detail.html',
       	controller: 'SongDetailCtrl'
       }).

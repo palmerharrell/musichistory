@@ -9,12 +9,11 @@ app.factory("song-storage", function($q, $http) {
 
       // Perform some asynchronous operation, resolve or reject 
       // the promise when appropriate.
-      // $http.get('./data/songs.json')
       $http.get('https://musichistoryph.firebaseio.com/.json')
       .success(
         function(objectFromJSONFile) {
-          console.log("objectFromJSONFile.songs", objectFromJSONFile.songs);
-          resolve(objectFromJSONFile.songs); // "resolve" is function after .then in SongCtrl.js
+          // "resolve" is function after .then in SongCtrl.js
+          resolve(objectFromJSONFile.songs);
         },function(error) {
           reject(error);
         }

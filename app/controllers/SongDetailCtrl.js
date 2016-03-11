@@ -8,12 +8,16 @@ app.controller("SongDetailCtrl", [
   function($scope, $routeParams, songStorage) {
 
     songStorage.then(
-      function(songArray) {
-        $scope.songs = songArray;
-
-            $scope.selectedSong = $scope.songs.filter(function(s) {
-              return s.id === parseInt($routeParams.songId);
-            })[0];
+      function(songCollection) {
+        $scope.songs = [];
+        for(let key in songCollection) {
+          songCollection[key].id = key;
+          $scope.songs.push(songCollection[key]);
+        }
+        $scope.selectedSong = $scope.songs.filter(function(s) {
+          return s.id === $routeParams.songId;
+        })[0];
+        console.log("$routeParams.songId", $routeParams.songId);
       },
       function() {
 

@@ -11,12 +11,11 @@ app.controller("SongCtrl", [
     
     songStorage.then(
         function(songCollection) {
+          $scope.songs = [];
           for(let key in songCollection) {
             songCollection[key].id = key;
-            console.log("songCollection[key]", songCollection[key]);
+            $scope.songs.push(songCollection[key]);
           }
-          console.log("songCollection after adding ids: ", songCollection);
-          $scope.songs = songCollection; // this is not right anymore
         },
         function() {
 

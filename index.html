@@ -2,82 +2,20 @@
 
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Music History</title>
-	<link rel="stylesheet" href="styles/styles.css">
+  <meta charset="utf-8">
+  <title>Music History</title>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-	<div class="content">
-		<nav class="roundedCorners">
-			<ul>
-				<li><a href="#" id="listLink">List Music</a></li>
-				<li>|</li>
-				<li><a href="#" id="addLink">Add Music</a></li>
-				<li>|</li>
-				<li><a href="#">Profile</a></li>
-			</ul>
-		</nav>
+  
+  <div class="test">
+  	<h1>TEST H1</h1>
+  	<p>Test paragraph</p>
+  </div>
 
-		<!-- START listView DIV -->
-		<div id="listView">
-			<div class="sidebar roundedCorners">
-				<p class="sidebarLabel">Song length:</p>
-				<input type="range" class="lengthSlider">
-				
-				<p class="sidebarLabel">Artist:</p>
-				<select name="artist" class="dropdown" id ="selectArtist"></select>
+  <div><p>No class DIV</p></div>
 
-				<p class="sidebarLabel">Album:</p>
-				<select name="album" class="dropdown" id="selectAlbum"></select>
-				
-				<p class="sidebarLabel">Genre:</p>
-				<div class="genreCol1">
-					<input type="checkbox" name="genre" value="genre 1">Genre 1<br>
-					<input type="checkbox" name="genre" value="genre 2">Genre 2<br>
-					<input type="checkbox" name="genre" value="genre 3">Genre 3<br>
-				</div>
-				<div class="genreCol2">
-					<input type="checkbox" name="genre" value="genre 4">Genre 4<br>
-					<input type="checkbox" name="genre" value="genre 5">Genre 5<br>
-					<input type="checkbox" name="genre" value="genre 6">Genre 6<br>
-				</div>
-				<div class="clearFilter">
-					<button id="clearButton">Clear Filter</button>
-				</div>
-			</div> <!-- .sidebar -->
-			<div class="songList roundedCorners">
-				<div class="songs"></div>
-				<div class="moreSongs"><button id="moreButton">More ></button></div>
-			</div>
-		</div> <!-- END listView DIV -->
-
-		<!-- START addView DIV -->
-		<div id="addView" class="roundedCorners hidden">
-			<div class="addSong">
-				<p>
-					<label for="songName">Song: </label>
-					<input id="songName" type="text">
-				</p>
-				<p>
-					<label for="artistName">Artist: </label>
-					<input id="artistName" type="text">
-				</p>
-				<p>
-					<label for="albumName">Album: </label>
-					<input id="albumName" type="text">
-				</p>
-				<p>
-					<button id="addButton">Add</button>
-				</p>
-			</div>
-		</div> <!-- END addView DIV -->
-
-	</div>
-	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="dist/bundle.js"></script>
-
-	<!-- Pre-Browserify js, renamed app.js -->
-	<!--<script src="scripts/songs.js"></script>-->
-	</body>
+	<script src="./app/app.js"></script>
+</body>
 </html>

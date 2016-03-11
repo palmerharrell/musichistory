@@ -1,0 +1,15 @@
+<section>
+
+	<div>
+	  <input type="text" ng-model="songSearchText.name" />
+	</div>
+
+	<div ng-repeat="song in songs | filter: songSearchText">
+	  <a href="#/songs/{{ song.id }}">{{ song.name }}</a>
+	</div>
+	
+	<div style="margin-top: 40px;">
+		<a href="#/song/new">Create New Song</a>
+	</div>
+	
+</section>

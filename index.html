@@ -3,19 +3,22 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Music History</title>
-  <link rel="stylesheet" href="css/main.css">
+  <title>Music History v9</title>
+
+  <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
-<body>
+<body ng-app="SongApp">
+
+	<div ng-view></div>
   
-  <div class="test">
-  	<h1>TEST H1</h1>
-  	<p>Test paragraph</p>
-  </div>
+  
+  <script src="lib/bower_components/angular/angular.min.js"></script>
+  <script src="lib/bower_components/angular-route/angular-route.min.js"></script>
 
-  <div><p>No class DIV</p></div>
-
-	<script src="./app/app.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/factories/song_storage.js"></script>
+  <script src="app/controllers/SongCtrl.js"></script>
+  <script src="app/controllers/SongDetailCtrl.js"></script>
 </body>
 </html>

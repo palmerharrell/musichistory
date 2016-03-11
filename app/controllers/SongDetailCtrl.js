@@ -17,7 +17,6 @@ app.controller("SongDetailCtrl", [
         $scope.selectedSong = $scope.songs.filter(function(s) {
           return s.id === $routeParams.songId;
         })[0];
-        console.log("$routeParams.songId", $routeParams.songId);
       },
       function() {
 

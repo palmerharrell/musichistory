@@ -6,6 +6,7 @@ app.controller("SongAddCtrl", [
   "song-storage",
 
   function($scope, $http, songStorage) { // same order as above, name whatever you want
+    $scope.newSong = {};
     console.log("Song Add Page Loaded");
   }
 ]);

@@ -1,7 +1,9 @@
-var app = angular.module("SongApp", ['ngRoute']);
+"use strict";
+
+let app = angular.module("SongApp", ['ngRoute']);
 
 app.config(['$routeProvider',
-  function($routeProvider) {
+  ($routeProvider) => {
     $routeProvider.
       when('/', {
         templateUrl: 'partials/song-list.html',

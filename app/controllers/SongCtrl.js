@@ -1,3 +1,5 @@
+"use strict";
+
 app.controller("SongCtrl", [
   "$scope",
   "$http",
@@ -14,6 +16,6 @@ app.controller("SongCtrl", [
         function() {
 
         }
-    )
+    );
   }
 ]);

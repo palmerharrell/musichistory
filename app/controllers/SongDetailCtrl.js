@@ -1,3 +1,5 @@
+"use strict";
+
 app.controller("SongDetailCtrl", [
   "$scope", 
   "$routeParams", 
@@ -10,12 +12,12 @@ app.controller("SongDetailCtrl", [
         $scope.songs = songArray;
 
             $scope.selectedSong = $scope.songs.filter(function(s) {
-              return s.id == parseInt($routeParams.songId);
+              return s.id === parseInt($routeParams.songId);
             })[0];
       },
       function() {
 
       }
-    )
+    );
   }
 ]);

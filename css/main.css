@@ -1,0 +1,15 @@
+body {
+  padding: 30px; }
+
+#input_labels {
+  float: left; }
+  #input_labels label {
+    display: block;
+    margin-bottom: 10px; }
+
+#song_inputs {
+  float: left;
+  margin-left: 20px; }
+  #song_inputs input {
+    display: block;
+    margin-bottom: 10px; }

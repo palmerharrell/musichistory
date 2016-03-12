@@ -1,6 +1,27 @@
-$color: darkblue;
+$color1: darkblue;
 
 // body {
-// 	background-color: $color;
+// 	background-color: $color1;
 // 	color: white;
 // }
+
+body {
+	padding: 30px;
+}
+
+#input_labels {
+	float: left;
+	label {
+		display: block;
+		margin-bottom: 10px;
+	}
+}
+
+#song_inputs {
+	float: left;
+	margin-left: 20px;
+	input {
+		display: block;
+		margin-bottom: 10px;
+	}
+}

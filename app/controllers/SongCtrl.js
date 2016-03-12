@@ -16,6 +16,7 @@ app.controller("SongCtrl", [
             songCollection[key].id = key;
             $scope.songs.push(songCollection[key]);
           }
+          console.log("$scope.songs", $scope.songs);
         },
         function() {
 

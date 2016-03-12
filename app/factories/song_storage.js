@@ -12,7 +12,6 @@ app.factory("song-storage", function($q, $http) {
       $http.get('https://musichistoryph.firebaseio.com/.json')
       .success(
         function(objectFromJSONFile) {
-          console.log("objectFromJSONFile", objectFromJSONFile);
           // "resolve" is function after .then in SongCtrl.js
           resolve(objectFromJSONFile.songs);
         },function(error) {

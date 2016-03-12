@@ -5,21 +5,20 @@ app.controller("SongCtrl", [
   "$http",
   "song-storage",
 
-  function($scope, $http, songStorage) { // same order as above, name whatever you want
+  function($scope, $http, songStorage) {
     $scope.songSearchText = {name: "", artist: "", album: ""};
     $scope.query = "";
     
-    songStorage.then(
-        function(songCollection) {
+    songStorage.then( // songStorage is promise from song_storage.js
+        function(songCollection) { // RESOLVE
           $scope.songs = [];
           for(let key in songCollection) {
             songCollection[key].id = key;
             $scope.songs.push(songCollection[key]);
           }
-          console.log("$scope.songs", $scope.songs);
         },
-        function() {
-
+        function() { // REJECT
+          console.log("Rejected");
         }
     );
   }

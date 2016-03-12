@@ -7,7 +7,7 @@ app.controller("SongDetailCtrl", [
   
   function($scope, $routeParams, songStorage) {
 
-    songStorage.then(
+    songStorage.then( // Is this doing anyting? Isn't promise already resolved?
       function(songCollection) {
         $scope.songs = [];
         for(let key in songCollection) {
@@ -18,8 +18,8 @@ app.controller("SongDetailCtrl", [
           return s.id === $routeParams.songId;
         })[0];
       },
-      function() {
-
+      function() { // REJECT
+          console.log("Rejected");
       }
     );
   }

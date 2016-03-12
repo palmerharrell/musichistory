@@ -5,13 +5,14 @@
 	<div id="input_labels">
 	  <label for="song_title">Song Title:</label>
     <label for="song_artist">Artist:</label>
-    <label for="song_album">Song Title:</label>
+    <label for="song_album">Album:</label>
 	</div>
 	
 	<div id="song_inputs">
-		<input type="text" id="song_title">
-		<input type="text" id="song_title">
-		<input type="text" id="song_album">
+		<input type="text" id="song_title" ng-model="newSong.name">
+		<input type="text" id="song_artist" ng-model="newSong.artist">
+		<input type="text" id="song_album" ng-model="newSong.album">
+		<button id="add_button" ng-click="addSong()">Add Song</button>
 	</div>
 
 </section>

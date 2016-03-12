@@ -1,25 +1,29 @@
 "use strict";
 
-app.controller("SongAddCtrl", [ // "SongAddCtrl is name of controller. [] contain dependencies"
+app.controller("SongAddCtrl", [ // "SongAddCtrl is name of controller. [] contain dependencies and function"
   "$scope",
   "$http",
   "$location",
 
   function($scope, $http, $location) { // same order as above, name whatever you want
     
-    // Fill with inputs (bind?) on button click in addSong function below
+    // Bound to inputs on song-add.html
     $scope.newSong = {};
     
-    console.log("Song Add Page Loaded");
-
     $scope.addSong = function() {
-      $http.post('https://musichistoryph.firebaseio.com/songs/.json',
-        {name: "testTitle", artist: "testArtist", album: "testAlbum"} // REPLACE with newSong object
-      );
-      // Switch to List View and GET songs. This needs to be a promise! Song doesn't show up until 2nd time
-      $location.path('/');
+      $http.post('https://musichistoryph.firebaseio.com/songs/.json', JSON.stringify($scope.newSong))
+      .then(function () {
+        return $http.get('https://musichistoryph.firebaseio.com/.json');
+      })
+      .then(function(songCollection) {
+        $scope.songs = [];
+        for(let key in songCollection.data.songs) {
+          songCollection.data.songs[key].id = key;
+          $scope.songs.push(songCollection.data.songs[key]);
+        }
+        console.log("$scope.songs", $scope.songs); // This works...
+        // $location.path('/'); // Why isn't the list updated???
+      });
     };
-
-    $scope.addSong(); // TEST TEST ~~~ DISABLE THIS! It POSTS a new song on page load!
   }
 ]);

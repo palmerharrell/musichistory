@@ -7,7 +7,7 @@
 
 	<div id="song_links" ng-repeat="song in songs | filter: songSearchText">
 	  <a href="#/songs/{{ song.id }}">{{ song.name }}</a>
-	  by {{song.artist}} on the album {{song.album}} <button>Delete</button>
+	  by {{song.artist}} on the album {{song.album}} <button ng-click="deleteSong()">Delete</button>
 	</div>
 	
 	<div style="margin-top: 40px;">

@@ -21,5 +21,10 @@ app.controller("SongCtrl", [
           console.log("Rejected");
         }
     );
+
+    $scope.deleteSong = function() {
+      console.log("this.song.id", this.song.id);
+      $http.delete('https://musichistoryph.firebaseio.com/songs/' + this.song.id);
+    };
   }
 ]);

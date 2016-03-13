@@ -1,11 +1,13 @@
 <section>
-
-	<div>
-	  <input type="text" ng-model="songSearchText.name" />
+	<h2>Song List</h2>
+	<div id="filters">
+		<label for="song_filter">Filter:</label>
+	  <input type="text" id="song_filter" ng-model="songSearchText.name" />
 	</div>
 
-	<div ng-repeat="song in songs | filter: songSearchText">
+	<div id="song_links" ng-repeat="song in songs | filter: songSearchText">
 	  <a href="#/songs/{{ song.id }}">{{ song.name }}</a>
+	  by {{song.artist}} on the album {{song.album}} <button>Delete</button>
 	</div>
 	
 	<div style="margin-top: 40px;">

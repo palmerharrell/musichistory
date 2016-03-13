@@ -20,10 +20,15 @@ app.controller("SongAddCtrl", [ // "SongAddCtrl is name of controller. [] contai
         for(let key in songCollection.data.songs) {
           songCollection.data.songs[key].id = key;
           $scope.songs.push(songCollection.data.songs[key]);
-        }
         console.log("$scope.songs", $scope.songs); // This works...
-        // $location.path('/'); // Why isn't the list updated???
+        }
+        
+        $location.path('/'); // Why isn't the list updated???
+        
       });
     };
   }
 ]);
+
+
+// $scope.$apply(function(){

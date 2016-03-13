@@ -7,7 +7,7 @@ app.controller("SongCtrl", [
 
   function($scope, $http, songStorage) {
     $scope.songSearchText = {name: "", artist: "", album: ""};
-    $scope.query = "";
+    $scope.query = ""; // What is this?
     
     songStorage.then( // songStorage is promise from song_storage.js
         function(songCollection) { // RESOLVE

@@ -13,3 +13,9 @@ body {
   #song_inputs input {
     display: block;
     margin-bottom: 10px; }
+
+#song_links {
+  margin-bottom: 12px; }
+
+#filters {
+  margin-bottom: 12px; }

@@ -23,8 +23,8 @@ app.controller("SongCtrl", [
     );
 
     $scope.deleteSong = function() {
-      console.log("this.song.id", this.song.id);
-      $http.delete('https://musichistoryph.firebaseio.com/songs/' + this.song.id);
+      console.log('https://musichistoryph.firebaseio.com/songs/' + this.song.id);
+      $http.delete('https://musichistoryph.firebaseio.com/songs/' + this.song.id +'.json');
     };
   }
 ]);

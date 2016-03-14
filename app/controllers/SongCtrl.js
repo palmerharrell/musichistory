@@ -25,6 +25,7 @@ app.controller("SongCtrl", [
 
     $scope.deleteSong = function() {
       $http.delete('https://musichistoryph.firebaseio.com/songs/' + this.song.id +'.json');
+      // .then($scope.$apply());  // well that didn't work
     };
   }
 ]);

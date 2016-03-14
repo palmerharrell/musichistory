@@ -7,7 +7,7 @@ app.controller("SongDetailCtrl", [
   
   function($scope, $routeParams, songStorage) {
 
-    songStorage.then( // Is this doing anything? Isn't promise already resolved?
+    songStorage().then( // Is this doing anything? Isn't promise already resolved?
       function(songCollection) {
         $scope.songs = [];
         for(let key in songCollection) {

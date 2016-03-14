@@ -3,13 +3,14 @@
 app.controller("SongCtrl", [
   "$scope",
   "$http",        // $http is for AJAX
+  "$location",
   "song-storage",
 
-  function($scope, $http, songStorage) {
+  function($scope, $http, $location, songStorage) {
     $scope.songSearchText = {name: "", artist: "", album: ""};
     $scope.query = ""; // What is this?
     
-    songStorage.then( // songStorage is promise from song_storage.js
+    songStorage().then( // songStorage is promise from song_storage.js
         function(songCollection) { // RESOLVE
           $scope.songs = [];
           for(let key in songCollection) {

@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("SongAddCtrl", [ // "SongAddCtrl is name of controller. [] contain dependencies and function"
+app.controller("SongAddCtrl", [ // "SongAddCtrl is name of controller. [] contain dependencies and logic"
   "$scope",
   "$http",
   "$location",
@@ -12,7 +12,7 @@ app.controller("SongAddCtrl", [ // "SongAddCtrl is name of controller. [] contai
     
     $scope.addSong = function() {
       $http.post('https://musichistoryph.firebaseio.com/songs/.json', JSON.stringify($scope.newSong))
-      .then(function () {
+      .then(function () { // this needs to be changed to call song-storage
         return $http.get('https://musichistoryph.firebaseio.com/.json');
       })
       .then(function(songCollection) {
@@ -30,5 +30,3 @@ app.controller("SongAddCtrl", [ // "SongAddCtrl is name of controller. [] contai
   }
 ]);
 
-
-// $scope.$apply(function(){

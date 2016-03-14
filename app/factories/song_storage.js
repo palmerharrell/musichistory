@@ -22,5 +22,8 @@ app.factory("song-storage", function($q, $http) {
     });
   }
 
-  return getSongList();
+  return getSongList(); // Remove parentheses to re-use promise
+                        // Add the parentheses after songStorage 
+                        //   every time it is called!
+                        // Replace other GETs with songStorage calls
 });

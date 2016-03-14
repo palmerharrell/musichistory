@@ -2,7 +2,7 @@
 
 app.controller("SongCtrl", [
   "$scope",
-  "$http",
+  "$http",        // $http is for AJAX
   "song-storage",
 
   function($scope, $http, songStorage) {
@@ -23,7 +23,6 @@ app.controller("SongCtrl", [
     );
 
     $scope.deleteSong = function() {
-      console.log('https://musichistoryph.firebaseio.com/songs/' + this.song.id);
       $http.delete('https://musichistoryph.firebaseio.com/songs/' + this.song.id +'.json');
     };
   }
